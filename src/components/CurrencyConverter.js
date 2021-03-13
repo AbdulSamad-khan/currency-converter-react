@@ -2,9 +2,9 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 
 const CurrencyConverter = () => {
-  let [input, setInput] = useState("");
-  let [fromCurrency, setFromCurrency] = useState("USA");
-  let [toCurrency, setToCurrency] = useState("USA");
+  let [input, setInput] = useState("1");
+  let [fromCurrency, setFromCurrency] = useState("USD");
+  let [toCurrency, setToCurrency] = useState("PKR");
   let [result, setResult] = useState("");
 
   useEffect(() => {
@@ -19,13 +19,14 @@ const CurrencyConverter = () => {
     //   setResult(data["data"]["quotes"][toCurrency] * input);
     // };
     const handleRequest = async () => {
-      let data = await axios.get("https://api.exchangerate.host/convert", {
+      let { data } = await axios.get("https://api.exchangerate.host/convert", {
         params: {
           from: fromCurrency,
           to: toCurrency,
         },
       });
-      setResult((data.data.info.rate * input).toFixed(2));
+      setResult((data.info.rate * input).toFixed(2));
+      console.log(data);
     };
 
     handleRequest();
@@ -41,6 +42,7 @@ const CurrencyConverter = () => {
           onChange={(e) => {
             setInput(e.target.value);
           }}
+          value={input}
         />
       </div>
       {/* from  currency  */}
@@ -55,8 +57,8 @@ const CurrencyConverter = () => {
       </select>
       <label>To</label>
       <select onChange={(e) => setToCurrency(e.target.value)}>
-        <option value="USD">USD</option>
         <option value="PKR">PKR</option>
+        <option value="USD">USD</option>
         <option value="INR">INR</option>
         <option value="AED">AED</option>
         <option value="EUR">EUR</option>
