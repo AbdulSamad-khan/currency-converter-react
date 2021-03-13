@@ -54,6 +54,7 @@ const CurrencyConverter = () => {
         <option value="AED">AED</option>
         <option value="EUR">EUR</option>
         <option value="JPY">JPY</option>
+        <option value="GBP">GBP</option>
       </select>
       <label>To</label>
       <select onChange={(e) => setToCurrency(e.target.value)}>
@@ -63,6 +64,7 @@ const CurrencyConverter = () => {
         <option value="AED">AED</option>
         <option value="EUR">EUR</option>
         <option value="JPY">JPY</option>
+        <option value="GBP">GBP</option>
       </select>
       {/* <button onClick={convertCurrency}>Convert</button> */}
       Converted Amount : {result} {toCurrency}
